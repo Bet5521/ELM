@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+    elmmb:
+        ports:
+            - '5703:3000'
+        entrypoint:
+            - /bin/bash
+        volumes:
+            - '/elmmb:/etc/elmmb'
+        container_name: elmmb
+        hostname: elmmb
+        restart: unless-stopped
+        image: 'wuhuan123/elmmb:latest'
