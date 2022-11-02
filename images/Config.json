@@ -11,6 +11,22 @@
             "QL_CLIENTID": "容器CLIENTID",
             "QL_SECRET": "容器SECRET",
             "QL_CAPACITY": 100
+        },
+        {
+            "QLkey": 2,
+            "QLName": "容器名称2",
+            "QLurl": "http://容器url",
+            "QL_CLIENTID": "容器CLIENTID",
+            "QL_SECRET": "容器SECRET",
+            "QL_CAPACITY": 100
+        },
+        {
+            "QLkey": 3,
+            "QLName": "容器名称3",
+            "QLurl": "http://容器url",
+            "QL_CLIENTID": "容器CLIENTID",
+            "QL_SECRET": "容器SECRET",
+            "QL_CAPACITY": 100
         }
     ]
 }
