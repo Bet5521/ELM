@@ -63,7 +63,8 @@ if [[ ${CONFIRM} == "Y" || ${CONFIRM} == "y" ]];then
 		cfg=${cfg:-"Y"}
 		if [[ ${cfg} == "Y" || ${cfg} == "y" ]];then
 			if [[ -f "/elmmb/Config.json"  ]]; then
-			echo -e $"\n已发现存在Config文件，是否确认重新配置？（默认N）" cfg2
+			#echo -e $"\n已发现存在Config文件，是否确认重新配置？（默认N）" 
+			read -p $"发现/elmmb/Config.json文件，是否确认重新配置？（默认N）" cfg2
 			cfg2=${cfg2:-"N"}
 				if [[ ${cfg2} == "Y" || ${cfg2} == "y" ]];then
 
@@ -105,13 +106,14 @@ if [[ ${CONFIRM} == "Y" || ${CONFIRM} == "y" ]];then
 
 	DOCKER_INSTALL
 	DOCKER_UP
+	read -p "输入容器映射端口: （回车默认为3000）" pp
+		pp=${pp:-"3000"}
+		if [[ ${pp} != "3000" || ${pp} != "3000" ]];then
+			eval "docker run -dit   -v /elmmb:/etc/elm   -p $pp:3000   --name elmmb   --hostname elmmb   --restart unless-stopped    --restart always   elmmb:latest"
+		else	
+			eval "docker run -dit   -v /elmmb:/etc/elm   -p 3000:3000   --name elmmb   --hostname elmmb   --restart unless-stopped    --restart always   elmmb:latest"
+		fi
 fi
-read -p "输入容器映射端口: （回车默认为3000）" pp
-pp=${pp:-"3000"}
-if [[ ${pp} != "3000" || ${pp} != "3000" ]];then
-	eval "docker run -dit   -v /elmmb:/etc/elm   -p $pp:3000   --name elmmb   --hostname elmmb   --restart unless-stopped    --restart always   elmmb:latest"
-else	
-	eval "docker run -dit   -v /elmmb:/etc/elm   -p 3000:3000   --name elmmb   --hostname elmmb   --restart unless-stopped    --restart always   elmmb:latest"
-fi
+
 
 exit 0
