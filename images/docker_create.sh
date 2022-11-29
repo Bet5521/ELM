@@ -36,12 +36,12 @@ DOCKER_UP() {
         wget https://ghproxy.com/https://raw.githubusercontent.com/lu0b0/ELM/main/images/Dockerfile -O /elmmb/Dockerfile
     fi
     
-    if [[ ${version} != "latest" ]];then
-
-    	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$version/elmmb -O /elmmb/elmmb
-    else
-    	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$(curl -Ls "https://api.github.com/repos/lu0b0/ELM/releases/latest" | 
+    if [[ ${version} == "latest" ]];then
+	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$(curl -Ls "https://api.github.com/repos/lu0b0/ELM/releases/latest" | 
 	grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')/elmmb -O /elmmb/elmmb
+    else
+    	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$version/elmmb -O /elmmb/elmmb
+
     fi	
     chmod -R 777 /elmmb
 	
@@ -95,7 +95,7 @@ if [[ ${CONFIRM} == "Y" || ${CONFIRM} == "y" ]];then
 									\"QLurl\": \"$qlurl\",
 									\"QL_CLIENTID\": \"$CLIENTID\",
 									\"QL_SECRET\": \"$SECRET\",
-									\"QL_CAPACITY\": "$NUM"
+									\"QL_CAPACITY\": \"$NUM"\
 					}
 								]
 	}" > /elmmb/Config.json
