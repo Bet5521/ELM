@@ -37,10 +37,11 @@ DOCKER_UP() {
     fi
     
     if [[ ${version} == "latest" ]];then
-	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$(curl -Ls "https://api.github.com/repos/lu0b0/ELM/releases/latest" | 
+
+    	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$(curl -Ls "https://api.github.com/repos/lu0b0/ELM/releases/latest" | 
 	grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')/elmmb -O /elmmb/elmmb
     else
-    	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$version/elmmb -O /elmmb/elmmb
+	wget https://ghproxy.com/https://github.com/lu0b0/ELM/releases/download/$version/elmmb -O /elmmb/elmmb
 
     fi	
     chmod -R 777 /elmmb
@@ -79,7 +80,7 @@ if [[ ${CONFIRM} == "Y" || ${CONFIRM} == "y" ]];then
 				read -p $'\n 输入容器SECRET: ' SECRET
 				SECRET=${SECRET:-""}
 				read -p $'\n 输入容器CK数(默认40): ' NUM
-				NUM=${NUM:-"40"}	
+				NUM40=${NUM40:-"40"}	
 				read -p $'\n 输入wxpusher推送的app_token 获取地址：https://wxpusher.zjiecode.com/admin (不设置推送按回车): ' wxpusher
 				wxpusher=${wxpusher:-""}
 
@@ -95,7 +96,7 @@ if [[ ${CONFIRM} == "Y" || ${CONFIRM} == "y" ]];then
 									\"QLurl\": \"$qlurl\",
 									\"QL_CLIENTID\": \"$CLIENTID\",
 									\"QL_SECRET\": \"$SECRET\",
-									\"QL_CAPACITY\": \"$NUM"\
+									\"QL_CAPACITY\": "$NUM40"
 					}
 								]
 	}" > /elmmb/Config.json
